@@ -1,0 +1,57 @@
+<?php
+// Conexão com o banco de dados
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sistema_estoque";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Recebendo os dados do formulário
+$uuid_fornecedor = $_POST['uuid_fornecedor'] ?? '';
+$razaosc = $_POST['razaosc'] ?? '';
+$nomefan = $_POST['nomefan'] ?? '';
+$contato = $_POST['contato'] ?? '';
+$endereco = $_POST['endereco'] ?? '';
+$numero = $_POST['numero'] ?? '';
+$bairro = $_POST['bairro'] ?? '';
+$cidade = $_POST['cidade'] ?? '';
+$estado = $_POST['estado'] ?? '';
+$complemento = $_POST['complemento'] ?? '';
+$telefone = $_POST['telefone'] ?? '';
+$celular = $_POST['celular'] ?? '';
+$email = $_POST['email'] ?? '';
+$cpf_cnpj = $_POST['cpf_cnpj'] ?? '';
+$rg_ie = $_POST['rg_ie'] ?? '';
+$tipo = $_POST['tipo'] ?? '';
+$cep = $_POST['cep'] ?? '';
+$obs = $_POST['obs'] ?? '';
+
+// Validar campos obrigatórios
+if (empty($nomefan)) {
+    die("Erro: Nome Fantasia é obrigatório.");
+}
+
+// Usar Prepared Statements para evitar SQL Injection
+$stmt = $conn->prepare("INSERT INTO sis_fornecedor (uuid_fornecedor, razaosc, nomefan, contato, endereco, numero, bairro, cidade, estado, complemento, telefone, celular, email, cpf_cnpj, rg_ie, tipo, cep, obs) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+if ($stmt) {
+    $stmt->bind_param("ssssssssssssssssss", $uuid_fornecedor, $razaosc, $nomefan, $contato, $endereco, $numero, $bairro, $cidade, $estado, $complemento, $telefone, $celular, $email, $cpf_cnpj, $rg_ie, $tipo, $cep, $obs);
+
+    if ($stmt->execute()) {
+        echo "Fornecedor cadastrado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar fornecedor: " . $stmt->error;
+    }
+
+    $stmt->close();
+} else {
+    echo "Erro de preparação: " . $conn->error;
+}
+
+$conn->close();
+?>

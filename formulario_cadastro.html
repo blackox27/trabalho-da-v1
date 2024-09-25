@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Fornecedores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        input, select, textarea {
+            width: calc(50% - 10px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+            width: 100%;
+        }
+        .full-width {
+            width: 100%;
+        }
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Fornecedores</h1>
+        <form action="processa_cadastro.php" method="POST">
+            <input type="text" name="uuid_fornecedor" placeholder="UUID Fornecedor" maxlength="64" />
+            <input type="text" name="razaosc" placeholder="Razão Social" maxlength="255" />
+            <input type="text" name="nomefan" placeholder="Nome Fantasia" maxlength="255" required />
+            <input type="text" name="contato" placeholder="Contato" maxlength="255" />
+            <input type="text" name="endereco" placeholder="Endereço" maxlength="255" />
+            <input type="text" name="numero" placeholder="Número" maxlength="50" />
+            <input type="text" name="bairro" placeholder="Bairro" maxlength="255" />
+            <input type="text" name="cidade" placeholder="Cidade" maxlength="255" />
+            <input type="text" name="estado" placeholder="Estado" maxlength="255" />
+            <input type="text" name="complemento" placeholder="Complemento" maxlength="255" />
+            <input type="text" name="telefone" placeholder="Telefone" maxlength="50" />
+            <input type="text" name="celular" placeholder="Celular" maxlength="50" />
+            <input type="email" name="email" placeholder="Email" maxlength="100" />
+            <input type="text" name="cpf_cnpj" placeholder="CPF/CNPJ" maxlength="30" />
+            <input type="text" name="rg_ie" placeholder="RG/IE" maxlength="30" />
+            <select name="tipo">
+                <option value="Pessoa Física">Pessoa Física</option>
+                <option value="Pessoa Jurídica">Pessoa Jurídica</option>
+            </select>
+            <input type="text" name="cep" placeholder="CEP" maxlength="11" />
+            <textarea name="obs" placeholder="Observações" maxlength="500"></textarea>
+            <button type="submit" class="full-width">Cadastrar Fornecedor</button>
+        </form>
+    </div>
+</body>
+</html>
